@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Left Panel Example</title>
+    <style>
+        /* CSS for the left panel */
+        body{
+            background-color: aqua;
+        }
+        .left-panel {
+            width: 200px;
+            background-color: lightgray;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            float: left;
+            margin-top: 250px;
+        }
+        
+        /* CSS for the content area */
+        .content-area {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        
+        /* CSS for the active component */
+        .active {
+            font-weight: bold;
+        }
+        .component{
+            cursor: pointer;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        // JavaScript to handle the component clicks and display content
+        function showContent(component) {
+            var components = document.getElementsByClassName('component');
+            for (var i = 0; i < components.length; i++) {
+                components[i].classList.remove('active');
+            }
+            component.classList.add('active');
+            
+            var componentName = component.getAttribute('data-component');
+            var contentElements = document.getElementsByClassName('content');
+            for (var i = 0; i < contentElements.length; i++) {
+                contentElements[i].style.display = 'none';
+            }
+            
+            var contentElement = document.getElementById(componentName);
+            contentElement.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="left-panel">
+        <div class="component" data-component="home" onclick="showContent(this)">Home</div>
+        <div class="component" data-component="contact" onclick="showContent(this)">Contact</div>
+        <div class="component" data-component="information" onclick="showContent(this)">Information</div>
+        <div class="component" data-component="guide" onclick="showContent(this)">Guide</div>
+    </div>
+    <div class="content-area">
+        <div id="home" class="content" style="display: block;">
+            <h2>Welcome to the Home page!</h2>
+            <p>This is the content for the Home page.</p>
+        </div>
+        <div id="contact" class="content" style="display: none;">
+            <h2>Contact Information</h2>
+            <p>This is the contact information page.</p>
+        </div>
+        <div id="information" class="content" style="display: none;">
+            <h2>Information Page</h2>
+            <p>This is the information page.</p>
+        </div>
+        <div id="guide" class="content" style="display: none;">
+            <h2>Guide Page</h2>
+            <p>This is the guide page.</p>
+        </div>
+    </div>
+</body>
+</html>
